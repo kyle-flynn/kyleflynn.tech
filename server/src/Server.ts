@@ -18,7 +18,7 @@ if (!existsSync(join(__dirname, '../../client/build'))) {
 
 app.all('*', async (req: Request, res: Response, next: NextFunction) => {
     if (req.secure || !isProduction) return next();
-    res.redirect(`https://${req.hostname}${req.url}`);
+    res.redirect(307, `https://${req.hostname}${req.url}`);
 });
 
 app.use(express.static(join(__dirname, '../../client/build')));
